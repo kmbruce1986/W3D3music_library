@@ -3,6 +3,8 @@ require('pry')
 require_relative('../models/artists.rb')
 require_relative('../models/albums.rb')
 
+Album.delete_all()
+Artist.delete_all()
 
 artist1 = Artist.new(
   {
@@ -39,6 +41,17 @@ album2 = Album.new(
 )
 
 album2.save
+
+
+album3 = Album.new(
+  {
+    'title' => "Golden Hour",
+    'genre' => "Country & Western",
+    'artist_id' => artist1.id
+  }
+)
+
+album3.save
 
 binding.pry
 nil
