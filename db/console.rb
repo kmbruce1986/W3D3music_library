@@ -3,6 +3,7 @@ require('pry')
 require_relative('../models/artists.rb')
 require_relative('../models/albums.rb')
 
+# As the Album requires an Artist in order to function (with the artist_id), the Albums should be deleted prior to the Artists being delted.
 Album.delete_all()
 Artist.delete_all()
 
@@ -13,7 +14,7 @@ artist1 = Artist.new(
 )
 
 artist1.save()
-
+# As the Album requires an artist in order to function, we must always create an artist prior to creating an album. 
 album1 = Album.new(
   {
     'title' => "Pageant Material",

@@ -1,4 +1,5 @@
 require('pg')
+# no other files are required.
 
 class SqlRunner
 
@@ -9,10 +10,11 @@ class SqlRunner
       db.prepare("query", sql)
       result = db.exec_prepared("query", values)
     ensure
+      # this closes the db
       db.close() if db != nil
     end
     return result
 
   end
-  
+
 end
