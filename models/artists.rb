@@ -14,7 +14,7 @@ class Artist
   end
 
   def save
-    sql = "INSERT INTO artists name VALUES $1 RETURNING id"
+    sql = "INSERT INTO artists (name) VALUES ($1) RETURNING id"
     values = [@name]
     # below, we are passing what is returned (the id) into an array, therefore we save it to a variable called results.  We then return this at the end of the function
     results = SqlRunner.run(sql, values)
@@ -57,14 +57,14 @@ class Artist
     # nothing is being returned.
   end
 
-  def self.find
+  def self.find(id)
     sql = "SELECT * FROM artists WHERE id = $1"
     values = [id]
     results = SqlRunner.run(sql, values)
     artist_hash = results.first
     artist = Artist.new(artist_hash)
     return artist
-    # we feed this a value, we get a hash back.  
+    # we feed this a value, we get a hash back.
   end
 
 end
